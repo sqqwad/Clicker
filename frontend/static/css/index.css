@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+}
+
+.click_count {
+    color: #FF00FF;
+    font-size: 30px;
+}
+
+.click_r {
+    color:green;
+     position: relative;
+   padding: 15px 40px;
+   margin: 0 20px;
+   background: #fff9ef;
+   font-family: 'Montserrat Alternates', sans-serif;
+   color: #fe7660;
+   text-transform: lowercase;
+   border: 2px solid #052464;
+   font-size: 16px;
+   font-weight: 600;
+   outline: none;
+   cursor: pointer;
+
+}

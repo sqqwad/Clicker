@@ -1,0 +1,17 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+<body>
+    <h1>CLICKER</h1>
+    <p class="click_count" id="counter">{{maincycle.click_count}}</p>
+    <button class ="click_r" onclick="call_click()">click me pls</button>
+</body>
+</html>
