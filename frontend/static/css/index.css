@@ -1,25 +1,79 @@
 body {
     margin: 0;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.click-container {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.boosts-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .click_count {
-    color: #FF00FF;
-    font-size: 30px;
+    color: red;
+
 }
 
-.click_r {
-    color:green;
-     position: relative;
-   padding: 15px 40px;
-   margin: 0 20px;
-   background: #fff9ef;
-   font-family: 'Montserrat Alternates', sans-serif;
-   color: #fe7660;
-   text-transform: lowercase;
-   border: 2px solid #052464;
-   font-size: 16px;
-   font-weight: 600;
-   outline: none;
-   cursor: pointer;
+.boosts-holder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
 
+.boost {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.boost p {
+    margin: 0;
+    padding: 0;
+}
+
+.click-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: fit-content;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.click-container img {
+    height: 100%;
+    transition: all .05s ease;
 }
