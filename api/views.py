@@ -10,13 +10,13 @@ from logging import getLogger
 
 # Create your views here.
 def index(request):
-    user = request.user
+    user = User.objects.filter(id=request.user.id).first()
 
-    if isinstance(user, AnonymousUser) or user is None:
+    if user is None:
         return redirect('login')
 
-    maincycle = models.MainCycle.objects.filter(user=user).first()
-    boosts = maincycle.boost_set.all()
+    maincycle = models.MainCycle.objects.filter(user=request.user).first()
+    boosts = models.Boost.objects.filter(main_cycle=maincycle)
 
     return render(request, 'index.html', {
         'maincycle': maincycle,
@@ -35,6 +35,9 @@ def register(request):
             maincycle.user = user
             maincycle.save()
 
+            boost = models.Boost(main_cycle=maincycle)
+            boost.save()
+
             # authenticate
             return redirect('login')
         else:
@@ -42,10 +45,6 @@ def register(request):
 
     form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
-
-
-def boosts(args):
-    pass
 
 
 @api_view(['GET'])
@@ -57,13 +56,13 @@ def call_click(request):
     is_level_up = maincycle.is_level_up()
 
     maincycle.save()
-    if is_level_up:
-        boost = models.Boost(
-            maicycle=maincycle,
-            level=maincycle.level,
-            power=maincycle.level*20,
-            price=maincycle.level*50,
-        )
+    if is_level_up == 1:
+        boost = models.Boost(main_cycle=maincycle, power=maincycle.level * 20, price=maincycle.level * 50)
+        boost.save()
+
+        boosts = [BoostSerializer(boost).data for boost in maincycle.boost_set.all()]
+    elif is_level_up == 2:
+        boost = models.Boost(main_cycle=maincycle, power=maincycle.level * 10, price=maincycle.level * 100, boost_type=1)
         boost.save()
 
         boosts = [BoostSerializer(boost).data for boost in maincycle.boost_set.all()]
@@ -73,7 +72,7 @@ def call_click(request):
         'boosts': boosts,
     })
 
-    
+
 @api_view(['POST'])
 def buy_boost(request):
     boost_id = request.data['boost_id']
